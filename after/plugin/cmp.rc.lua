@@ -1,5 +1,7 @@
 local status, cmp = pcall(require, "cmp")
-if (not status) then return end
+if (not status or not cmp) then
+  return
+end
 local lspkind = require 'lspkind'
 
 cmp.setup({
@@ -36,7 +38,3 @@ vim.cmd [[
   set completeopt=menuone,noinsert,noselect
   highlight! default link CmpItemKind CmpItemMenuDefault
 ]]
-
--- " Use <Tab> and <S-Tab> to navigate through popup menu
--- inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
--- inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
