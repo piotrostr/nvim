@@ -3,10 +3,6 @@ if (not status) then return end
 local actions = require('telescope.actions')
 local builtin = require("telescope.builtin")
 
-local function telescope_buffer_dir()
-  return vim.fn.expand('%:p:h')
-end
-
 local fb_actions = require "telescope".extensions.file_browser.actions
 
 telescope.setup {
@@ -19,9 +15,9 @@ telescope.setup {
   },
   extensions = {
     file_browser = {
-      theme = "dropdown",
+      theme = "ivy",
       -- disables netrw and use telescope-file-browser in its place
-      hijack_netrw = false,
+      hijack_netrw = true,
       mappings = {
         -- your custom insert mode mappings
         ["i"] = {
@@ -29,7 +25,7 @@ telescope.setup {
         },
         ["n"] = {
           -- your custom normal mode mappings
-          ["N"] = fb_actions.create,
+          ["%"] = fb_actions.create,
           ["h"] = fb_actions.goto_parent_dir,
           ["/"] = function()
             vim.cmd('startinsert')
@@ -64,15 +60,9 @@ end)
 vim.keymap.set('n', ';e', function()
   builtin.diagnostics()
 end)
-vim.keymap.set("n", "sf", function()
+vim.keymap.set("n", ";s", function()
   telescope.extensions.file_browser.file_browser({
     path = "%:p:h",
-    cwd = telescope_buffer_dir(),
-    respect_gitignore = false,
-    hidden = true,
-    grouped = true,
-    previewer = false,
-    initial_mode = "normal",
-    layout_config = { height = 40 }
+    layout_config = { height = 60 }
   })
 end)

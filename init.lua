@@ -14,9 +14,12 @@ set.smarttab = true
 set.expandtab = true
 set.cursorline = false
 
+-- TODO(piotrostr):
+-- set the tabstop and shiftwidth based on the filetype using ftplugin
+
 -- go
-set.tabstop = 8
-set.shiftwidth = 8
+-- set.tabstop = 8
+-- set.shiftwidth = 8
 
 -- tsx
 set.tabstop = 2
