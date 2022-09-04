@@ -7,6 +7,8 @@ local fb_actions = require "telescope".extensions.file_browser.actions
 
 telescope.setup {
   defaults = {
+    initial_mode = 'normal',
+    startinsert = false,
     mappings = {
       n = {
         ["q"] = actions.close,
