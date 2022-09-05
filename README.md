@@ -56,6 +56,8 @@ npm i -g @tailwindcss/language-server
 npm i -g solidity-language-server
 npm i -g eslint_d
 npm i -g typescript-language-server
+npm i -g typescript
+npm i -g pyright
 
 go install github.com/mattn/efm-langserver@latest 
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest

@@ -167,3 +167,12 @@ nvim_lsp.solidity_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
+
+-- json
+nvim_lsp.jsonls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+-- python
+nvim_lsp.pyright.setup {}

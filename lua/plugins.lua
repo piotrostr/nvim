@@ -50,4 +50,5 @@ packer.startup(function(use)
   use 'akinsho/nvim-bufferline.lua'
   use 'aserowy/tmux.nvim'
   use 'lewis6991/gitsigns.nvim'
+  use 'hrsh7th/cmp-path'
 end)

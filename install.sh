@@ -20,6 +20,7 @@ if which npm >> /dev/null; then
   npm i -g solidity-language-server
   npm i -g typescript-language-server
   npm i -g eslint_d
+  npm i -g pyright
 else
   echo "NPM executable not found"
 fi
