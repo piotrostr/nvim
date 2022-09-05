@@ -12,6 +12,7 @@ ts.setup {
   },
   ensure_installed = {
     "tsx",
+    "solidity",
     "toml",
     "json",
     "yaml",
@@ -24,7 +25,10 @@ ts.setup {
   },
 }
 
-require'nvim-treesitter.install'.compilers = { 'aarch64-apple-darwin21-gcc-11' }
+-- uncomment below on macos if cannot compile
+-- sometimes might need to :TSInstall <parser> manually as well for it to work
+--
+-- require 'nvim-treesitter.install'.compilers = { 'aarch64-apple-darwin21-gcc-11' }
 
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
