@@ -7,8 +7,6 @@ local fb_actions = require "telescope".extensions.file_browser.actions
 
 telescope.setup {
   defaults = {
-    initial_mode = 'normal',
-    startinsert = false,
     mappings = {
       n = {
         ["q"] = actions.close,
@@ -20,6 +18,8 @@ telescope.setup {
   },
   extensions = {
     file_browser = {
+      initial_mode = 'normal',
+      startinsert = false,
       theme = "ivy",
       -- disables netrw and use telescope-file-browser in its place
       hijack_netrw = true,
@@ -33,6 +33,7 @@ telescope.setup {
           ["%"] = fb_actions.create,
           ["h"] = fb_actions.goto_parent_dir,
           ["D"] = fb_actions.remove,
+          ["R"] = fb_actions.rename,
           ["/"] = function()
             vim.cmd('startinsert')
           end
