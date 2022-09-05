@@ -20,16 +20,12 @@ telescope.setup {
     file_browser = {
       initial_mode = 'normal',
       startinsert = false,
-      theme = "ivy",
-      -- disables netrw and use telescope-file-browser in its place
       hijack_netrw = true,
       mappings = {
-        -- your custom insert mode mappings
         ["i"] = {
           ["<C-w>"] = function() vim.cmd('normal vbd') end,
         },
         ["n"] = {
-          -- your custom normal mode mappings
           ["%"] = fb_actions.create,
           ["h"] = fb_actions.goto_parent_dir,
           ["D"] = fb_actions.remove,
@@ -71,12 +67,11 @@ end)
 vim.keymap.set('n', ';;', function()
   builtin.resume()
 end)
-vim.keymap.set('n', ';e', function()
+vim.keymap.set('n', ';d', function()
   builtin.diagnostics()
 end)
 vim.keymap.set("n", ";s", function()
   telescope.extensions.file_browser.file_browser({
     path = "%:p:h",
-    layout_config = { height = 60 }
   })
 end)
