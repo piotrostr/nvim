@@ -19,11 +19,10 @@ local on_attach = function(_, bufnr)
   -- Mappings.
   local opts = { noremap = true, silent = true }
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  --buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  --buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 end
 
 protocol.CompletionItemKind = {
@@ -116,16 +115,31 @@ vim.diagnostic.config({
 })
 
 nvim_lsp.gopls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities
+  on_attach = on_attach,
+  capabilities = capabilities
 }
 
-nvim_lsp.bashls.setup{}
+nvim_lsp.bashls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
-nvim_lsp.dockerls.setup{}
+nvim_lsp.dockerls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
-nvim_lsp.efm.setup{}
+nvim_lsp.efm.setup{
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
-nvim_lsp.eslint.setup{}
+nvim_lsp.eslint.setup{
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
-nvim_lsp.golangci_lint_ls.setup{}
+nvim_lsp.golangci_lint_ls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities
+}
