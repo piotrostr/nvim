@@ -14,4 +14,3 @@ bufferline.setup({
 
 vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCycleNext<CR>', {})
 vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCyclePrev<CR>', {})
-vim.keymap.set('n', '<C-d>', '<Cmd>bd<CR>', {})
