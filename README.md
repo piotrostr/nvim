@@ -6,6 +6,9 @@ my previous setup, mainly due to speed reasons.
 
 ## Installation
 
+There is a convenience script that performs all of the steps below called
+`install.sh` in the root dir. See below for manual installation.
+
 Telescope dependencies:
 
 ```sh
@@ -27,6 +30,13 @@ Then install the plugins:
 ```sh
 :PackerCompile
 :PackerInstall
+```
+
+Optionally, one can also install GitHub Copilot:
+
+```sh
+git clone https://github.com/github/copilot.vim.git \
+  ~/.vim/pack/github/start/copilot.vim
 ```
 
 ## Language servers
