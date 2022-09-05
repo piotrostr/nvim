@@ -41,7 +41,11 @@ packer.startup(function(use)
   use 'norcalli/nvim-colorizer.lua'
   use({
     "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
+    run = "cd app && npm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
   })
   use 'akinsho/nvim-bufferline.lua'
   use 'aserowy/tmux.nvim'

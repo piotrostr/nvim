@@ -19,6 +19,7 @@ set.smarttab = true
 set.expandtab = true
 set.cursorline = false
 set.termguicolors = true
+set.signcolumn = "yes"
 
 -- TODO(piotrostr):
 -- set the tabstop and shiftwidth based on the filetype using ftplugin
@@ -58,4 +59,3 @@ set.backspace = { 'start', 'eol', 'indent' }
 set.path:append { '**' }
 set.wildignore:append { '*/node_modules/*' }
 set.formatoptions:append { 'r' }
-

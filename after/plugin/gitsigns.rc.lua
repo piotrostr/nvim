@@ -8,8 +8,6 @@ require('gitsigns').setup {
       vim.keymap.set(mode, l, r, opts)
     end
 
-    -- Actions
-
     -- git add
     map({ 'n', 'v' }, 'gha', ':Gitsigns stage_hunk<CR>')
 
