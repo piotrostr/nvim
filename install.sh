@@ -18,6 +18,8 @@ if which npm >> /dev/null; then
   npm i -g yaml-language-server
   npm i -g @tailwindcss/language-server
   npm i -g solidity-language-server
+  npm i -g typescript-language-server
+  npm i -g eslint_d
 else
   echo "NPM executable not found"
 fi

@@ -54,6 +54,8 @@ npm i -g vscode-langservers-extracted
 npm i -g yaml-language-server
 npm i -g @tailwindcss/language-server
 npm i -g solidity-language-server
+npm i -g eslint_d
+npm i -g typescript-language-server
 
 go install github.com/mattn/efm-langserver@latest 
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
