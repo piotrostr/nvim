@@ -24,14 +24,6 @@ set.signcolumn = "yes"
 -- TODO(piotrostr):
 -- set the tabstop and shiftwidth based on the filetype using ftplugin
 
--- go
--- set.tabstop = 8
--- set.shiftwidth = 8
-
--- tsx
-set.tabstop = 2
-set.shiftwidth = 2
-
 --navigate without control w, just control
 keymap.set('n', '<C-k>', ':wincmd k<CR>')
 keymap.set('n', '<C-j>', ':wincmd j<CR>')
