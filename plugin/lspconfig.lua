@@ -4,17 +4,11 @@ local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
 local protocol = require('vim.lsp.protocol')
-local util = require "lspconfig/util"
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   local opts = { noremap = true, silent = true }
@@ -58,37 +52,6 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
   vim.lsp.protocol.make_client_capabilities()
 )
 
-nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-  cmd = { "typescript-language-server", "--stdio" },
-  capabilities = capabilities
-}
-
-nvim_lsp.sourcekit.setup {
-  on_attach = on_attach,
-}
-
-nvim_lsp.sumneko_lua.setup {
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
-      },
-
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false
-      },
-    },
-  },
-}
-
-nvim_lsp.tailwindcss.setup {}
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = true,
@@ -114,32 +77,84 @@ vim.diagnostic.config({
   },
 })
 
+-- lua
+nvim_lsp.sumneko_lua.setup {
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim' },
+      },
+
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false
+      },
+    },
+  },
+}
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+
+
+-- typescript
+nvim_lsp.eslint.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+nvim_lsp.tsserver.setup {
+  on_attach = on_attach,
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" },
+  capabilities = capabilities
+}
+
+nvim_lsp.tailwindcss.setup {}
+
+-- bash
+nvim_lsp.bashls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+-- docker
+nvim_lsp.dockerls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+-- markdown etc
+nvim_lsp.efm.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+-- golang
+nvim_lsp.golangci_lint_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
 nvim_lsp.gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
 
-nvim_lsp.bashls.setup{
+-- yaml
+nvim_lsp.yamlls.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
 
-nvim_lsp.dockerls.setup{
+-- terraform
+nvim_lsp.terraformls.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
-
-nvim_lsp.efm.setup{
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-
-nvim_lsp.eslint.setup{
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-
-nvim_lsp.golangci_lint_ls.setup{
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+nvim_lsp.tflint.setup {}
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*.tf", "*.tfvars" },
+  callback = vim.lsp.buf.formatting_sync,
+})
