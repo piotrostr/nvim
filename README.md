@@ -1,17 +1,28 @@
 # neovim
 
-My shared (linux/osx) setup.
+My shared (linux/osx) setup. It uses the built-in neovim lsp and telescope for
+file browsing. I would highly recommend this to coc.nvim with netrw, which was
+my previous setup, mainly due to speed reasons. 
 
 ## Installation
+
+Telescope dependencies:
+
+```sh
+sudo apt update && \
+  sudo apt install make gcc ripgrep fzf
+```
 
 Install packer through:
 
 ```sh
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+git clone \
+  --depth 1 \
+  https://github.com/wbthomason/packer.nvim \
+  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
-Then to install the plugins:
+Then install the plugins:
 
 ```sh
 :PackerCompile
