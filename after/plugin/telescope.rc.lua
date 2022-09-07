@@ -72,7 +72,7 @@ end)
 vim.keymap.set('n', ';d', function()
   builtin.diagnostics()
 end)
-vim.keymap.set("n", ";s", function()
+vim.keymap.set("n", ";e", function()
   telescope.extensions.file_browser.file_browser({
     path = "%:p:h",
   })

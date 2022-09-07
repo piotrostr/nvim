@@ -176,3 +176,6 @@ nvim_lsp.jsonls.setup {
 
 -- python
 nvim_lsp.pyright.setup {}
+
+-- java (ugh)
+nvim_lsp.java_language_server.setup {}

@@ -11,7 +11,7 @@ local keymap = vim.keymap
 
 vim.scriptencoding = 'utf-8'
 
-set.background = 'light'
+set.background = 'dark'
 
 set.tabstop = 2
 set.autoindent = true
