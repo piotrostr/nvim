@@ -13,6 +13,7 @@ telescope.setup {
         ["v"] = actions.select_vertical,
         ["s"] = actions.select_horizontal,
         ["t"] = actions.select_tab,
+        ["l"] = actions.select_default,
       },
     },
   },
