@@ -49,4 +49,9 @@ packer.startup(function(use)
   use 'aserowy/tmux.nvim'
   use 'lewis6991/gitsigns.nvim'
   use 'hrsh7th/cmp-path'
+  use {
+    "zbirenbaum/copilot-cmp",
+    module = "copilot_cmp"
+  }
+  use 'github/copilot.vim'
 end)

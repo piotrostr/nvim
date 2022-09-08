@@ -21,9 +21,9 @@ cmp.setup({
     }),
   }),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'buffer' },
     { name = 'copilot' },
+    { name = 'buffer' },
+    { name = 'nvim_lsp' },
     { name = 'path' }
   }),
   formatting = {
@@ -36,7 +36,20 @@ cmp.setup({
 
 -- solve copilot discrepancy
 vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<Tab>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_tab_fallback = ""
+cmp.mapping["Tab"] = function(fallback)
+  if cmp.visible() then
+    cmp.select_next_item()
+  else
+    local copilot_keys = vim.fn["copilot#Accept"]()
+    if copilot_keys ~= "" then
+      vim.api.nvim_feedkeys(copilot_keys, "i", true)
+    else
+      fallback()
+    end
+  end
+end
 
 vim.cmd [[
   set completeopt=menuone,noinsert,noselect

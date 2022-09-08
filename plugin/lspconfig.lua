@@ -175,7 +175,13 @@ nvim_lsp.jsonls.setup {
 }
 
 -- python
-nvim_lsp.pyright.setup {}
+nvim_lsp.pyright.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
 -- java (ugh)
-nvim_lsp.java_language_server.setup {}
+nvim_lsp.java_language_server.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
