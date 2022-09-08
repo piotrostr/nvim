@@ -12,14 +12,14 @@ ts.setup {
   },
   ensure_installed = {
     "tsx",
-    "solidity",
+    -- "solidity",
     "toml",
     "json",
     "yaml",
-    "css",
+    -- "css",
     "lua",
     "go",
-    "python"
+    -- "python"
   },
   autotag = {
     enable = true,
