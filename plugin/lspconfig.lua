@@ -175,3 +175,9 @@ nvim_lsp.java_language_server.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
+
+-- markdown, tex
+nvim_lsp.ltex.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
