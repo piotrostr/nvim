@@ -151,10 +151,6 @@ nvim_lsp.tflint.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*.tf", "*.tfvars" },
-  callback = vim.lsp.buf.formatting_sync,
-})
 
 -- solidity
 nvim_lsp.solidity_ls.setup {
