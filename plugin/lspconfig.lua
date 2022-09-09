@@ -125,12 +125,6 @@ nvim_lsp.dockerls.setup {
   capabilities = capabilities
 }
 
--- markdown etc
-nvim_lsp.efm.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-
 -- golang
 nvim_lsp.golangci_lint_ls.setup {
   on_attach = on_attach,
