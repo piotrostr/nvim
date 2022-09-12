@@ -139,7 +139,14 @@ nvim_lsp.gopls.setup {
 -- yaml
 nvim_lsp.yamlls.setup {
   on_attach = on_attach,
-  capabilities = capabilities
+  capabilities = capabilities,
+  settings = {
+    yaml = {
+      schemas = {
+        kubernetes = "/*.yaml"
+      }
+    }
+  }
 }
 
 -- terraform
