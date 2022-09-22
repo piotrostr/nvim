@@ -13,18 +13,13 @@ vim.scriptencoding = 'utf-8'
 
 set.background = 'dark'
 
-set.tabstop = 2
+set.shiftwidth = 2
 set.autoindent = true
 set.smarttab = true
 set.expandtab = true
 set.cursorline = false
 set.termguicolors = true
 set.signcolumn = "yes"
-
--- TODO(piotrostr):
--- set the tabstop and shiftwidth based on the filetype using ftplugin
-set.shiftwidth = 2
-set.tabstop = 2
 
 --navigate without control w, just control
 keymap.set('n', '<C-k>', ':wincmd k<CR>')

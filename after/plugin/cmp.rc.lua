@@ -22,9 +22,9 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'copilot' },
-    { name = 'buffer' },
     { name = 'nvim_lsp' },
-    { name = 'path' }
+    { name = 'path' },
+    -- { name = 'buffer' },
   }),
   formatting = {
     format = lspkind.cmp_format({

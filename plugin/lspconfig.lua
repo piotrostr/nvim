@@ -143,7 +143,7 @@ nvim_lsp.yamlls.setup {
   settings = {
     yaml = {
       schemas = {
-        kubernetes = "/*.yaml"
+        kubernetes = { "deployment.yaml", "manifest.yaml" }
       }
     }
   }
@@ -185,6 +185,18 @@ nvim_lsp.java_language_server.setup {
 
 -- markdown, tex
 nvim_lsp.ltex.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+-- protobufs
+nvim_lsp.bufls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+-- rust
+nvim_lsp.rust_analyzer.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
