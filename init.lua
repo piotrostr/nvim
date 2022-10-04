@@ -1,10 +1,15 @@
 require('plugins')
+require('opts')
+require('keys')
 
 vim.cmd("autocmd!")
 
 vim.cmd([[colorscheme gruvbox]])
 vim.cmd([[set guicursor=i:block]])
 vim.cmd([[set relativenumber]])
+
+-- ensure that there will be 8 space indents in go files
+vim.cmd([[autocmd FileType go setlocal tabstop=8 shiftwidth=8]])
 
 local set = vim.opt
 local keymap = vim.keymap

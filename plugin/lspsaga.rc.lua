@@ -11,4 +11,3 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts)
 vim.keymap.set('n', 'gr', '<Cmd>Lspsaga lsp_finder<CR>', opts)
 vim.keymap.set('n', 'gp', '<Cmd>Lspsaga preview_definition<CR>', opts)
-vim.keymap.set('n', 'q', '<Cmd>Lspsaga code_action<CR>')

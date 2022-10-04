@@ -150,6 +150,13 @@ nvim_lsp.yamlls.setup {
 }
 
 -- terraform
+-- first set ftplugin to see terraform
+vim.cmd [[
+  augroup terraform
+    autocmd!
+    autocmd BufNewFile,BufRead *.tf set filetype=terraform
+  augroup END
+]]
 nvim_lsp.terraformls.setup {
   on_attach = on_attach,
   capabilities = capabilities
@@ -158,6 +165,10 @@ nvim_lsp.tflint.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*.tf", "*.tfvars" },
+  callback = vim.lsp.buf.formatting_sync,
+})
 
 -- solidity
 nvim_lsp.solidity_ls.setup {
@@ -184,10 +195,10 @@ nvim_lsp.java_language_server.setup {
 }
 
 -- markdown, tex
-nvim_lsp.ltex.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+-- nvim_lsp.ltex.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities
+-- }
 
 -- protobufs
 nvim_lsp.bufls.setup {
@@ -201,9 +212,31 @@ nvim_lsp.rust_analyzer.setup {
   capabilities = capabilities
 }
 
+nvim_lsp.taplo.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
 -- cc
 capabilities.offsetEncoding = { "utf-16" }
 nvim_lsp.clangd.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  filetypes = { "c", "cpp", "objc", "objcpp" }
+}
+
+-- angular & html & sass
+nvim_lsp.angularls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+nvim_lsp.html.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+nvim_lsp.emmet_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
 }
