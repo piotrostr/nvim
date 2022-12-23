@@ -63,4 +63,5 @@ packer.startup(function(use)
   }
   use 'github/copilot.vim'
   use 'puremourning/vimspector'
+  use 'sebdah/vim-delve'
 end)

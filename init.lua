@@ -4,9 +4,15 @@ require('keys')
 
 vim.cmd("autocmd!")
 
-vim.cmd([[colorscheme gruvbox]])
 vim.cmd([[set guicursor=i:block]])
 vim.cmd([[set relativenumber]])
+vim.cmd([[
+  augroup user_colors
+    autocmd!
+    autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+  augroup END
+]])
+vim.cmd([[colorscheme gruvbox]])
 
 -- ensure that there will be 8 space indents in go files
 vim.cmd([[autocmd FileType go setlocal tabstop=8 shiftwidth=8]])
@@ -16,7 +22,7 @@ local keymap = vim.keymap
 
 vim.scriptencoding = 'utf-8'
 
-set.background = 'dark'
+--set.background = 'dark' -- or 'light' for light mode
 
 set.shiftwidth = 2
 set.autoindent = true
@@ -25,6 +31,7 @@ set.expandtab = true
 set.cursorline = false
 set.termguicolors = true
 set.signcolumn = "yes"
+
 
 --navigate without control w, just control
 keymap.set('n', '<C-k>', ':wincmd k<CR>')

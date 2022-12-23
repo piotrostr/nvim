@@ -22,7 +22,7 @@ telescope.setup {
       hidden = true,
       initial_mode = 'normal',
       startinsert = false,
-      hijack_netrw = true,
+      hijack_netrw = false, -- god save netrw
       mappings = {
         ["i"] = {
           ["<C-w>"] = function() vim.cmd('normal vbd') end,
