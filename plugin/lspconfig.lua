@@ -53,6 +53,9 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
   vim.lsp.protocol.make_client_capabilities()
 )
 
+-- disable snippets
+capabilities.textDocument.completion.completionItem.snippetSupport = false
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = true,
@@ -97,7 +100,6 @@ nvim_lsp.sumneko_lua.setup {
   },
 }
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
-
 
 -- typescript
 nvim_lsp.eslint.setup {
