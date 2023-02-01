@@ -4,7 +4,7 @@ require('keys')
 
 vim.cmd("autocmd!")
 
-vim.cmd([[set guicursor=i:block]])
+-- vim.cmd([[set guicursor=i:block]]) -- set cursor to block
 vim.cmd([[set relativenumber]])
 vim.cmd([[
   augroup user_colors

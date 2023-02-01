@@ -8,7 +8,8 @@ vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- pacman
-  use { "ellisonleao/gruvbox.nvim" } -- colorscheme
+  --use { "ellisonleao/gruvbox.nvim" } -- colorscheme
+  use 'morhetz/gruvbox' -- colorscheme
   use 'ray-x/go.nvim'
   use 'L3MON4D3/LuaSnip' -- dep
   use 'ray-x/guihua.lua' -- dep
@@ -33,7 +34,14 @@ packer.startup(function(use)
   use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
-  use 'glepnir/lspsaga.nvim' -- LSP UIs
+  use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+      require("lspsaga").setup()
+    end,
+    requires = { { "nvim-tree/nvim-web-devicons" } }
+  })
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'kyazdani42/nvim-web-devicons' -- File icons

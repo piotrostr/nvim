@@ -13,10 +13,12 @@ local on_attach = function(_, bufnr)
   -- Mappings.
   local opts = { noremap = true, silent = true }
 
+  buf_set_keymap('n', 'gr', ':Lspsaga lsp_finder<CR>', opts)
+  buf_set_keymap('n', 'gp', ':Lspsaga preview_definition<CR>', opts)
+  buf_set_keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'q', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end
 
@@ -49,9 +51,7 @@ protocol.CompletionItemKind = {
 }
 
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
-  vim.lsp.protocol.make_client_capabilities()
-)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- disable snippets
 capabilities.textDocument.completion.completionItem.snippetSupport = false
@@ -99,7 +99,7 @@ nvim_lsp.sumneko_lua.setup {
     },
   },
 }
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
 -- typescript
 nvim_lsp.eslint.setup {
@@ -108,7 +108,10 @@ nvim_lsp.eslint.setup {
 }
 
 nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
+  on_attach = function(client)
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
+  end,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" },
   capabilities = capabilities
@@ -170,7 +173,7 @@ nvim_lsp.tflint.setup {
 }
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*.tf", "*.tfvars" },
-  callback = vim.lsp.buf.formatting_sync,
+  callback = vim.lsp.buf.format,
 })
 
 -- solidity
@@ -247,6 +250,11 @@ nvim_lsp.html.setup {
 }
 
 nvim_lsp.emmet_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+nvim_lsp.svelte.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
