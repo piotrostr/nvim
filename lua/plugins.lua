@@ -31,7 +31,8 @@ packer.startup(function(use)
 
   use 'neovim/nvim-lspconfig' -- LSP
   use 'jose-elias-alvarez/null-ls.nvim' --  LSP diagnostics, code actions, and more via Lua
-  use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
+  -- use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
+  use 'sbdchd/neoformat'
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use({
@@ -72,4 +73,5 @@ packer.startup(function(use)
   use 'github/copilot.vim'
   use 'puremourning/vimspector'
   use 'sebdah/vim-delve'
+  use 'mfussenegger/nvim-jdtls'
 end)

@@ -15,10 +15,11 @@ local on_attach = function(_, bufnr)
 
   buf_set_keymap('n', 'gr', ':Lspsaga lsp_finder<CR>', opts)
   buf_set_keymap('n', 'gp', ':Lspsaga preview_definition<CR>', opts)
-  buf_set_keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
+  -- buf_set_keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', 'q', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end
 
@@ -99,7 +100,14 @@ nvim_lsp.sumneko_lua.setup {
     },
   },
 }
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+
+--vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+vim.cmd [[
+  augroup fmt
+    autocmd!
+    autocmd BufWritePre * undojoin | Neoformat
+  augroup END
+]]
 
 -- typescript
 nvim_lsp.eslint.setup {
@@ -108,10 +116,7 @@ nvim_lsp.eslint.setup {
 }
 
 nvim_lsp.tsserver.setup {
-  on_attach = function(client)
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
-  end,
+  on_attach = on_attach,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" },
   capabilities = capabilities
@@ -195,10 +200,15 @@ nvim_lsp.pyright.setup {
 }
 
 -- java (ugh)
-nvim_lsp.java_language_server.setup {
+-- require('jdtls').start_or_attach({
+--   cmd = { 'jdtls' },
+--   root_dir = vim.fs.dirname(vim.fs.find({ '.gradlew', '.git', 'mvnw' }, { upward = true })[1]),
+-- })
+nvim_lsp.jdtls.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
+
 
 -- markdown, tex
 -- nvim_lsp.ltex.setup {

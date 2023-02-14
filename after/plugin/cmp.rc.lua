@@ -5,11 +5,11 @@ end
 local lspkind = require 'lspkind'
 
 cmp.setup({
-  -- snippet = {
-  --   expand = function(args)
-  --     require('luasnip').lsp_expand(args.body)
-  --   end,
-  -- },
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
   mapping = cmp.mapping.preset.insert({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -26,7 +26,7 @@ cmp.setup({
     { name = 'nvim_lsp_signature_help' }, -- display function signatures with current parameter emphasized
     { name = 'nvim_lua', keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
     -- { name = 'buffer', keyword_length = 2 }, -- source current buffer
-    -- { name = 'vsnip', keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
+    { name = 'vsnip', keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
     -- { name = 'calc' }, -- source for math calculation
     { name = 'copilot' },
   }),
