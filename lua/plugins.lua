@@ -9,7 +9,8 @@ vim.cmd [[packadd packer.nvim]]
 packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- pacman
   --use { "ellisonleao/gruvbox.nvim" } -- colorscheme
-  use 'morhetz/gruvbox' -- colorscheme
+  -- use 'morhetz/gruvbox' -- colorscheme
+  use 'ellisonleao/gruvbox.nvim'
   use 'ray-x/go.nvim'
   use 'L3MON4D3/LuaSnip' -- dep
   use 'ray-x/guihua.lua' -- dep
@@ -41,7 +42,10 @@ packer.startup(function(use)
     config = function()
       require("lspsaga").setup()
     end,
-    requires = { { "nvim-tree/nvim-web-devicons" } }
+    requires = {
+      {"nvim-tree/nvim-web-devicons"},
+      {"nvim-treesitter/nvim-treesitter"},
+    }
   })
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/nvim-treesitter-context'
@@ -55,14 +59,6 @@ packer.startup(function(use)
   use 'windwp/nvim-autopairs'
   use 'windwp/nvim-ts-autotag'
   use 'norcalli/nvim-colorizer.lua'
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    setup = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-    ft = { "markdown" },
-  })
   use 'akinsho/nvim-bufferline.lua'
   use 'aserowy/tmux.nvim'
   use 'lewis6991/gitsigns.nvim'

@@ -12,6 +12,8 @@ vim.cmd([[
     autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
   augroup END
 ]])
+
+vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
 
 -- ensure that there will be 8 space indents in go files
