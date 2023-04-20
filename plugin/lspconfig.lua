@@ -82,24 +82,24 @@ vim.diagnostic.config({
   },
 })
 
--- lua
-nvim_lsp.sumneko_lua.setup {
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
-      },
-
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false
-      },
-    },
-  },
-}
+-- sumneko lua is deprecated but I don't really care
+-- nvim_lsp.sumneko_lua.setup {
+--   on_attach = on_attach,
+--   settings = {
+--     Lua = {
+--       diagnostics = {
+--         -- Get the language server to recognize the `vim` global
+--         globals = { 'vim' },
+--       },
+-- 
+--       workspace = {
+--         -- Make the server aware of Neovim runtime files
+--         library = vim.api.nvim_get_runtime_file("", true),
+--         checkThirdParty = false
+--       },
+--     },
+--   },
+-- }
 
 --vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 vim.cmd [[
@@ -176,10 +176,6 @@ nvim_lsp.tflint.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*.tf", "*.tfvars" },
-  callback = vim.lsp.buf.format,
-})
 
 -- solidity
 nvim_lsp.solidity_ls.setup {
