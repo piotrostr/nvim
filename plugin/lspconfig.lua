@@ -15,7 +15,7 @@ local on_attach = function(_, bufnr)
 
   buf_set_keymap('n', 'gr', ':Lspsaga lsp_finder<CR>', opts)
   buf_set_keymap('n', 'gp', ':Lspsaga preview_definition<CR>', opts)
-  -- buf_set_keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
+  --buf_set_keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
   buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -81,25 +81,6 @@ vim.diagnostic.config({
     source = "always", -- Or "if_many"
   },
 })
-
--- sumneko lua is deprecated but I don't really care
--- nvim_lsp.sumneko_lua.setup {
---   on_attach = on_attach,
---   settings = {
---     Lua = {
---       diagnostics = {
---         -- Get the language server to recognize the `vim` global
---         globals = { 'vim' },
---       },
--- 
---       workspace = {
---         -- Make the server aware of Neovim runtime files
---         library = vim.api.nvim_get_runtime_file("", true),
---         checkThirdParty = false
---       },
---     },
---   },
--- }
 
 --vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 vim.cmd [[
@@ -271,3 +252,7 @@ nvim_lsp.intelephense.setup {
   capabilities = capabilities
 }
 
+nvim_lsp.lua_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}

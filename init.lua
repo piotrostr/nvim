@@ -1,3 +1,15 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 require('plugins')
 require('opts')
 require('keys')
@@ -40,9 +52,9 @@ keymap.set('n', '<C-j>', ':wincmd j<CR>')
 keymap.set('n', '<C-h>', ':wincmd h<CR>')
 keymap.set('n', '<C-l>', ':wincmd l<CR>')
 
-vim.cmd([[
-let g:copilot_node_command = "~/.volta/bin/node"
-]])
+-- vim.cmd([[
+-- let g:copilot_node_command = "/opt/homebrew/opt/node@18/bin/node"
+-- ]])
 
 set.winblend = 0
 set.wildoptions = 'pum'

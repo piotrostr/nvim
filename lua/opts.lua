@@ -6,7 +6,6 @@ vim.cmd([[
 set signcolumn=yes
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
-
 -- Vimspector options
 vim.cmd([[
 let g:vimspector_sidebar_width = 85

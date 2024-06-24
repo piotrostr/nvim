@@ -1,71 +1,64 @@
-local status, packer = pcall(require, "packer")
-if (not status) then
-  print("Packer is not installed")
-  return
-end
+-- Configuration table for lazy.nvim
+require("lazy").setup({
+  -- 'ellisonleao/gruvbox.nvim', -- colorscheme
+  -- 'morhetz/gruvbox', -- colorscheme
+  'ellisonleao/gruvbox.nvim',
+  'ray-x/go.nvim',
+  'L3MON4D3/LuaSnip', -- dep
+  'ray-x/guihua.lua', -- dep
+  'dinhhuy258/git.nvim', -- dep
+  'nvim-lua/plenary.nvim', -- dep
+  'nvim-lualine/lualine.nvim', -- Statusline
+  'onsails/lspkind-nvim', -- vscode-like pictograms
 
-vim.cmd [[packadd packer.nvim]]
+  'hrsh7th/nvim-cmp',
 
-packer.startup(function(use)
-  use 'wbthomason/packer.nvim' -- pacman
-  --use { "ellisonleao/gruvbox.nvim" } -- colorscheme
-  -- use 'morhetz/gruvbox' -- colorscheme
-  use 'ellisonleao/gruvbox.nvim'
-  use 'ray-x/go.nvim'
-  use 'L3MON4D3/LuaSnip' -- dep
-  use 'ray-x/guihua.lua' -- dep
-  use 'dinhhuy258/git.nvim' -- dep
-  use 'nvim-lua/plenary.nvim' -- dep
-  use 'nvim-lualine/lualine.nvim' -- Statusline
-  use 'onsails/lspkind-nvim' -- vscode-like pictograms
+  'hrsh7th/cmp-nvim-lsp',
 
-  use 'hrsh7th/nvim-cmp'
+  'hrsh7th/cmp-nvim-lua',
+  'hrsh7th/cmp-nvim-lsp-signature-help',
+  'hrsh7th/cmp-vsnip',
+  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/vim-vsnip',
 
-  use 'hrsh7th/cmp-nvim-lsp'
-
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-nvim-lsp-signature-help'
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/vim-vsnip'
-
-  use 'neovim/nvim-lspconfig' -- LSP
-  use 'jose-elias-alvarez/null-ls.nvim' --  LSP diagnostics, code actions, and more via Lua
-  -- use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
-  use 'sbdchd/neoformat'
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
-  use({
+  'neovim/nvim-lspconfig', -- LSP
+  'jose-elias-alvarez/null-ls.nvim', -- LSP diagnostics, code actions, and more via Lua
+  -- 'MunifTanjim/prettier.nvim', -- Prettier plugin for Neovim's built-in LSP client
+  'sbdchd/neoformat',
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+  {
     "glepnir/lspsaga.nvim",
     branch = "main",
     config = function()
       require("lspsaga").setup()
     end,
-    requires = {
-      {"nvim-tree/nvim-web-devicons"},
-      {"nvim-treesitter/nvim-treesitter"},
-    }
-  })
-  use 'nvim-treesitter/nvim-treesitter'
-  use 'nvim-treesitter/nvim-treesitter-context'
-  use 'kyazdani42/nvim-web-devicons' -- File icons
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-file-browser.nvim'
-  use {
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
+  'nvim-treesitter/nvim-treesitter',
+  'nvim-treesitter/nvim-treesitter-context',
+  'kyazdani42/nvim-web-devicons', -- File icons
+  'nvim-telescope/telescope.nvim',
+  'nvim-telescope/telescope-file-browser.nvim',
+  {
     'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'make'
-  }
-  use 'windwp/nvim-autopairs'
-  use 'windwp/nvim-ts-autotag'
-  use 'norcalli/nvim-colorizer.lua'
-  use 'akinsho/nvim-bufferline.lua'
-  use 'aserowy/tmux.nvim'
-  use 'lewis6991/gitsigns.nvim'
-  use {
-    "zbirenbaum/copilot-cmp",
-    module = "copilot_cmp"
-  }
-  -- use 'github/copilot.vim'
-  -- use 'mfussenegger/nvim-jdtls'
-end)
+    build = 'make',
+  },
+  'akinsho/nvim-bufferline.lua',
+  'aserowy/tmux.nvim',
+  'lewis6991/gitsigns.nvim',
+  'github/copilot.vim',
+  -- {
+  --   'zbirenbaum/copilot.lua',
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("copilot").setup({})
+  --   end,
+  -- },
+})
+
