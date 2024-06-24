@@ -66,8 +66,6 @@ packer.startup(function(use)
     "zbirenbaum/copilot-cmp",
     module = "copilot_cmp"
   }
-  use 'github/copilot.vim'
-  use 'puremourning/vimspector'
-  use 'sebdah/vim-delve'
-  use 'mfussenegger/nvim-jdtls'
+  -- use 'github/copilot.vim'
+  -- use 'mfussenegger/nvim-jdtls'
 end)

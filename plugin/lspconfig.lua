@@ -110,19 +110,19 @@ vim.cmd [[
 ]]
 
 -- typescript
+
+nvim_lsp.tsserver.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+}
+
 nvim_lsp.eslint.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
 
-nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-  cmd = { "typescript-language-server", "--stdio" },
-  capabilities = capabilities
-}
-
-nvim_lsp.tailwindcss.setup {}
+-- nvim_lsp.tailwindcss.setup {}
 
 -- bash
 nvim_lsp.bashls.setup {
@@ -200,10 +200,10 @@ nvim_lsp.pyright.setup {
 --   cmd = { 'jdtls' },
 --   root_dir = vim.fs.dirname(vim.fs.find({ '.gradlew', '.git', 'mvnw' }, { upward = true })[1]),
 -- })
-nvim_lsp.jdtls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+-- nvim_lsp.jdtls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities
+-- }
 
 
 -- markdown, tex
@@ -245,10 +245,10 @@ nvim_lsp.clangd.setup {
 }
 
 -- angular & html & sass
-nvim_lsp.angularls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+-- nvim_lsp.angularls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities
+-- }
 
 nvim_lsp.html.setup {
   on_attach = on_attach,
@@ -264,3 +264,10 @@ nvim_lsp.svelte.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
+
+-- php
+nvim_lsp.intelephense.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
