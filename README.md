@@ -16,21 +16,7 @@ sudo apt update && \
   sudo apt install make gcc ripgrep fzf
 ```
 
-Install packer through:
-
-```sh
-git clone \
-  --depth 1 \
-  https://github.com/wbthomason/packer.nvim \
-  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-```
-
-Then install the plugins:
-
-```sh
-:PackerCompile
-:PackerInstall
-```
+Plugins install automatically thanks to lazy.nvim
 
 Optionally, one can also install GitHub Copilot:
 
