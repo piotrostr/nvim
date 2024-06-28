@@ -1,7 +1,5 @@
 -- Configuration table for lazy.nvim
 require("lazy").setup({
-  -- 'ellisonleao/gruvbox.nvim', -- colorscheme
-  -- 'morhetz/gruvbox', -- colorscheme
   'ellisonleao/gruvbox.nvim',
   'ray-x/go.nvim',
   'L3MON4D3/LuaSnip', -- dep
@@ -22,9 +20,8 @@ require("lazy").setup({
   'hrsh7th/cmp-buffer',
   'hrsh7th/vim-vsnip',
 
-  'neovim/nvim-lspconfig', -- LSP
-  'jose-elias-alvarez/null-ls.nvim', -- LSP diagnostics, code actions, and more via Lua
-  -- 'MunifTanjim/prettier.nvim', -- Prettier plugin for Neovim's built-in LSP client
+  'neovim/nvim-lspconfig',
+  'jose-elias-alvarez/null-ls.nvim',
   'sbdchd/neoformat',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
@@ -48,17 +45,54 @@ require("lazy").setup({
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'make',
   },
-  'akinsho/nvim-bufferline.lua',
+  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+
   'aserowy/tmux.nvim',
   'lewis6991/gitsigns.nvim',
+  { 'christoomey/vim-tmux-navigator', lazy=false},
   'github/copilot.vim',
-  -- {
-  --   'zbirenbaum/copilot.lua',
-  --   cmd = "Copilot",
-  --   event = "InsertEnter",
-  --   config = function()
-  --     require("copilot").setup({})
-  --   end,
-  -- },
-})
+  {
+    "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    }
+  },
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      require("notify").setup({
+	background_colour = "#000000",
+      })
+    end
+  },
+  {
+    "lewis6991/hover.nvim",
+    config = function()
+      require("hover").setup({
+        init = function()
+          require("hover.providers.lsp")
+          require('hover.providers.gh')
+          require('hover.providers.gh_user')
+          -- require('hover.providers.jira')
+          -- require('hover.providers.man')
+          -- require('hover.providers.dictionary')
+        end,
+        preview_opts = {
+	  border = "rounded",
+        },
+        preview_window = false,
+        mouse_delay = 1000,
+	title = false,
+      })
 
+      -- Setup keymaps
+      vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
+      vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
+
+      -- Mouse support
+      vim.keymap.set('n', '<MouseMove>', require('hover').hover_mouse, { desc = "hover.nvim (mouse)" })
+      vim.o.mousemoveevent = true
+    end,
+  }
+})

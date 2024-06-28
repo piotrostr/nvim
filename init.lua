@@ -11,13 +11,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require('plugins')
-require('opts')
-require('keys')
-
-vim.cmd("autocmd!")
 
 -- vim.cmd([[set guicursor=i:block]]) -- set cursor to block
 vim.cmd([[set relativenumber]])
+
 vim.cmd([[
   augroup user_colors
     autocmd!
@@ -26,53 +23,45 @@ vim.cmd([[
 ]])
 
 vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
-
-
-local set = vim.opt
-local keymap = vim.keymap
 
 vim.scriptencoding = 'utf-8'
 
 --set.background = 'dark' -- or 'light' for light mode
 
-set.shiftwidth = 2
-set.autoindent = true
-set.cursorline = false
-set.termguicolors = true
-set.signcolumn = "yes"
+vim.cmd([[colorscheme gruvbox]])
+vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
+vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
 
 -- ensure 2 tabs on typescript and tsx
 vim.cmd([[autocmd FileType typescript setlocal tabstop=2 shiftwidth=2]])
 vim.cmd([[autocmd FileType typescriptreact setlocal tabstop=2 shiftwidth=2]])
 
 --navigate without control w, just control
-keymap.set('n', '<C-k>', ':wincmd k<CR>')
-keymap.set('n', '<C-j>', ':wincmd j<CR>')
-keymap.set('n', '<C-h>', ':wincmd h<CR>')
-keymap.set('n', '<C-l>', ':wincmd l<CR>')
+vim.keymap.set('n', "<C-h>", "<cmd>TmuxNavigateLeft<cr>")
+vim.keymap.set('n', "<C-j>", "<cmd>TmuxNavigateDown<cr>")
+vim.keymap.set('n', "<C-k>", "<cmd>TmuxNavigateUp<cr>")
+vim.keymap.set('n', "<C-l>", "<cmd>TmuxNavigateRight<cr>")
 
--- vim.cmd([[
--- let g:copilot_node_command = "/opt/homebrew/opt/node@18/bin/node"
--- ]])
-
-set.winblend = 0
-set.wildoptions = 'pum'
-set.pumblend = 5
-set.encoding = 'utf-8'
-set.fileencoding = 'utf-8'
-set.title = true
-set.hlsearch = true
-set.backup = false
-set.showcmd = true
-set.cmdheight = 1
-set.laststatus = 2
-set.scrolloff = 10
-set.shell = 'zsh'
-set.backupskip = { '/tmp/*', '/private/tmp/*' }
-set.inccommand = 'split'
-set.ignorecase = true
-set.backspace = { 'start', 'eol', 'indent' }
-set.path:append { '**' }
-set.wildignore:append { '*/node_modules/*' }
-set.formatoptions:append { 'r' }
+vim.opt.shiftwidth = 2
+vim.opt.autoindent = true
+vim.opt.cursorline = false
+vim.opt.termguicolors = true
+vim.opt.signcolumn = "yes"
+vim.opt.winblend = 0
+vim.opt.wildoptions = 'pum'
+vim.opt.pumblend = 5
+vim.opt.encoding = 'utf-8'
+vim.opt.fileencoding = 'utf-8'
+vim.opt.title = true
+vim.opt.hlsearch = true
+vim.opt.backup = false
+vim.opt.cmdheight = 1
+vim.opt.laststatus = 2
+vim.opt.scrolloff = 10
+vim.opt.shell = 'zsh'
+vim.opt.backupskip = { '/tmp/*', '/private/tmp/*' }
+vim.opt.inccommand = 'split'
+vim.opt.ignorecase = true
+vim.opt.path:append { '**' }
+vim.opt.wildignore:append { '*/node_modules/*' }
+vim.opt.formatoptions:append { 'r' }

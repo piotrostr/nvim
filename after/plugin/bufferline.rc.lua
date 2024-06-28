@@ -1,16 +1,10 @@
-local status, bufferline = pcall(require, "bufferline")
-if (not status) then return end
-
-bufferline.setup({
-  options = {
-    mode = "tabs",
-    separator_style = 'slant',
-    always_show_bufferline = false,
-    show_buffer_close_icons = false,
-    show_close_icon = false,
-    color_icons = true,
-  },
-})
-
+vim.cmd([[set termguicolors]])
+require("bufferline").setup{}
 vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCycleNext<CR>', {})
 vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCyclePrev<CR>', {})
+
+-- vscode bindings for consistency
+vim.keymap.set('n', 'gt', '<Cmd>BufferLineCycleNext<CR>', {})
+vim.keymap.set('n', 'gT', '<Cmd>BufferLineCyclePrev<CR>', {})
+-- close current buffer
+vim.keymap.set('n', '<C-x>', '<Cmd>bdelete<CR>', {})
