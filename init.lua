@@ -22,13 +22,11 @@ vim.cmd([[
   augroup END
 ]])
 
-vim.o.background = "dark" -- or "light" for light mode
-
 vim.scriptencoding = 'utf-8'
 
---set.background = 'dark' -- or 'light' for light mode
-
+vim.o.background = 'dark' -- or 'light' for light mode
 vim.cmd([[colorscheme gruvbox]])
+
 vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
 vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
 
@@ -42,10 +40,9 @@ vim.keymap.set('n', "<C-j>", "<cmd>TmuxNavigateDown<cr>")
 vim.keymap.set('n', "<C-k>", "<cmd>TmuxNavigateUp<cr>")
 vim.keymap.set('n', "<C-l>", "<cmd>TmuxNavigateRight<cr>")
 
-vim.opt.shiftwidth = 2
+vim.opt.shiftwidth = 4
 vim.opt.autoindent = true
 vim.opt.cursorline = false
-vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.winblend = 0
 vim.opt.wildoptions = 'pum'

@@ -1,5 +1,5 @@
-vim.cmd([[set termguicolors]])
-require("bufferline").setup{}
+vim.opt.termguicolors = true
+require("bufferline").setup{ }
 vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCycleNext<CR>', {})
 vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCyclePrev<CR>', {})
 
