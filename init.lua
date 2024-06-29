@@ -12,7 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 require('plugins')
 
--- vim.cmd([[set guicursor=i:block]]) -- set cursor to block
+vim.cmd([[set guicursor=i:block]]) -- set cursor to block
+vim.cmd([[set guicursor=a:blinkon0]])
+
 vim.cmd([[set relativenumber]])
 
 vim.cmd([[
@@ -40,6 +42,7 @@ vim.keymap.set('n', "<C-j>", "<cmd>TmuxNavigateDown<cr>")
 vim.keymap.set('n', "<C-k>", "<cmd>TmuxNavigateUp<cr>")
 vim.keymap.set('n', "<C-l>", "<cmd>TmuxNavigateRight<cr>")
 
+vim.opt.colorcolumn = '80'
 vim.opt.shiftwidth = 4
 vim.opt.autoindent = true
 vim.opt.cursorline = false
