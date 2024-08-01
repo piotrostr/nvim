@@ -8,6 +8,13 @@ require("lazy").setup({
   'nvim-lua/plenary.nvim', -- dep
   'nvim-lualine/lualine.nvim', -- Statusline
   'onsails/lspkind-nvim', -- vscode-like pictograms
+  'navarasu/onedark.nvim',
+  {
+    "FabijanZulj/blame.nvim",
+     config = function()
+       require("blame").setup()
+     end,
+  },
 
   { 'hrsh7th/nvim-cmp',
     dependencies =  {
@@ -64,6 +71,9 @@ require("lazy").setup({
     config = function()
       require("notify").setup({
 	background_colour = "#000000",
+	render = "compact",
+	level = 3,
+	timeout = 1500
       })
     end
   },
@@ -94,6 +104,12 @@ require("lazy").setup({
       -- Mouse support
       vim.keymap.set('n', '<MouseMove>', require('hover').hover_mouse, { desc = "hover.nvim (mouse)" })
       vim.o.mousemoveevent = true
+    end,
+  },
+  {
+    "pwntester/octo.nvim",
+    config = function()
+      --require("octo").setup()
     end,
   }
 })
