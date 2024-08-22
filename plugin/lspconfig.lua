@@ -285,10 +285,23 @@ nvim_lsp.lua_ls.setup {
   }
 }
 
+nvim_lsp.zls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
 -- format on save for rust
 vim.cmd [[
   augroup rust
 	autocmd!
 	autocmd BufWritePre *.rs lua vim.lsp.buf.format()
+  augroup END
+]]
+
+-- format on save for zig
+vim.cmd [[
+  augroup zig
+	autocmd!
+	autocmd BufWritePre *.zig lua vim.lsp.buf.format()
   augroup END
 ]]

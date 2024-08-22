@@ -1,3 +1,6 @@
+vim.o.background = 'dark' 
+-- vim.o.background = 'light'
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -25,8 +28,6 @@ vim.cmd([[
 ]])
 
 vim.scriptencoding = 'utf-8'
-
-vim.o.background = 'dark' -- or 'light' for light mode
 vim.cmd([[colorscheme gruvbox]])
 
 vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
