@@ -1,3 +1,9 @@
+-- faster cursor
+vim.o.timeoutlen = 300
+vim.o.ttimeoutlen = 0
+vim.o.updatetime = 100
+vim.o.ttyfast = true
+
 vim.o.background = 'dark' 
 -- vim.o.background = 'light'
 

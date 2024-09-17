@@ -24,7 +24,7 @@ local on_attach = function(_, bufnr)
   -- buf_set_keymap('n', '<C-i>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<space>D', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<space>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<Cmd>Telescope lsp_references<CR>', opts)
   buf_set_keymap('n', '<space>e', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
@@ -169,8 +169,18 @@ nvim_lsp.tflint.setup {
   capabilities = capabilities
 }
 
--- solidity
-nvim_lsp.solidity_ls.setup {
+local lspconfig = require 'lspconfig'
+local configs = require 'lspconfig.configs'
+
+configs.solidity = {
+  default_config = {
+    cmd = {'nomicfoundation-solidity-language-server', '--stdio'},
+    filetypes = { 'solidity' },
+    root_dir = lspconfig.util.find_git_ancestor,
+    single_file_support = true,
+  },
+}
+nvim_lsp.solidity.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
@@ -286,6 +296,11 @@ nvim_lsp.lua_ls.setup {
 }
 
 nvim_lsp.zls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+nvim_lsp.omnisharp.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }

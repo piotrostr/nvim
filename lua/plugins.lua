@@ -26,8 +26,20 @@ require("lazy").setup({
     },
     lazy = false,
   },
-
-
+  {
+    "MysticalDevil/inlay-hints.nvim",
+    event = "LspAttach",
+    dependencies = { "neovim/nvim-lspconfig" },
+    config = function()
+        require("inlay-hints").setup({
+	    autocmd = { enable = true }
+	})
+    end
+  },
+  {
+    "HakonHarnes/img-clip.nvim",
+    event = "VeryLazy",
+  },
   'neovim/nvim-lspconfig',
   'jose-elias-alvarez/null-ls.nvim',
   'sbdchd/neoformat',
@@ -111,5 +123,31 @@ require("lazy").setup({
     config = function()
       --require("octo").setup()
     end,
+  },
+  {
+    "yetone/avante.nvim",
+    build = "make",
+    event = "VeryLazy",
+    opts = {
+      -- add any opts here
+    },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below is optional, make sure to setup it properly if you have lazy=true
+      {
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
   }
 })
+
+vim.opt.splitkeep = "screen"
+vim.opt.laststatus = 3
+vim.g.mapleader = " "
