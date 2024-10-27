@@ -4,8 +4,9 @@ vim.o.ttimeoutlen = 0
 vim.o.updatetime = 100
 vim.o.ttyfast = true
 
-vim.o.background = 'dark' 
+vim.o.background = 'dark'
 -- vim.o.background = 'light'
+--
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -72,3 +73,34 @@ vim.opt.ignorecase = true
 vim.opt.path:append { '**' }
 vim.opt.wildignore:append { '*/node_modules/*' }
 vim.opt.formatoptions:append { 'r' }
+
+
+-- vim.cmd[[
+-- nnoremap <C-w>e :Ex<CR>
+-- ]]
+vim.api.nvim_set_keymap('n', '<C-w>e', ':NvimTreeFindFileToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-w>k', ':w<CR>', { noremap = true, silent = true })
+
+
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
+-- empty setup using defaults
+require("nvim-tree").setup()
+
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})

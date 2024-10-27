@@ -1,5 +1,11 @@
 -- Configuration table for lazy.nvim
 require("lazy").setup({
+  {
+    'nvim-tree/nvim-tree.lua',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+  },
   'ellisonleao/gruvbox.nvim',
   'ray-x/go.nvim',
   'L3MON4D3/LuaSnip', -- dep
