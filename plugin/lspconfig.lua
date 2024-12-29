@@ -103,7 +103,7 @@ vim.cmd [[
 
 -- typescript
 
-nvim_lsp.tsserver.setup {
+nvim_lsp.ts_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
@@ -145,8 +145,12 @@ nvim_lsp.yamlls.setup {
   capabilities = capabilities,
   settings = {
     yaml = {
+      format = {
+	enable = true,
+	indentSequences = false,
+      },
       schemas = {
-        kubernetes = { "deployment.yaml", "manifest.yaml" }
+        kubernetes = { "deployment.yaml", "manifest.yaml" },
       }
     }
   }
@@ -320,3 +324,8 @@ vim.cmd [[
 	autocmd BufWritePre *.zig lua vim.lsp.buf.format()
   augroup END
 ]]
+
+nvim_lsp.vuels.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}

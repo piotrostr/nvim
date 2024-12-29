@@ -8,7 +8,7 @@ require("lazy").setup({
   },
   'ellisonleao/gruvbox.nvim',
   'ray-x/go.nvim',
-  'L3MON4D3/LuaSnip', -- dep
+  -- 'L3MON4D3/LuaSnip', -- dep
   'ray-x/guihua.lua', -- dep
   'dinhhuy258/git.nvim', -- dep
   'nvim-lua/plenary.nvim', -- dep
