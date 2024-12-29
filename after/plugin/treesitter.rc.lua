@@ -36,3 +36,13 @@ ts.setup {
 
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
+
+parser_config.move = {
+  install_info = {
+    url = "https://github.com/tree-sitter-grammars/tree-sitter-move",
+    files = {"src/parser.c"},
+    branch = "saving",
+  },
+  filetype = "move",
+}
+
