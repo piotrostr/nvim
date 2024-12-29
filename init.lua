@@ -27,10 +27,6 @@ set_background_based_on_theme()
 -- Optionally, you can create a command to manually trigger the theme check
 vim.api.nvim_create_user_command('CheckSystemTheme', set_background_based_on_theme, {})
 
-vim.cmd([[
-    command! ReloadConfig source ~/.config/nvim/init.lua | set hlsearch
-]])
-
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -46,8 +42,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 require('plugins')
 
-vim.cmd([[set guicursor=i:block]]) -- set cursor to block
-vim.cmd([[set guicursor=a:blinkon0]])
+-- vim.cmd([[set guicursor=i:block]]) -- set cursor to block
+-- vim.cmd([[set guicursor=a:blinkon0]])
 
 vim.cmd([[set relativenumber]])
 
