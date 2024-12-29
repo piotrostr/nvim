@@ -6,7 +6,31 @@ vim.o.ttyfast = true
 
 vim.o.background = 'dark'
 -- vim.o.background = 'light'
---
+
+local function set_background_based_on_theme()
+  -- Command to detect the system theme (macOS example)
+  local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
+  local result = handle:read("*a")
+  handle:close()
+
+  -- Set the background based on the result
+  if result:match("Dark") then
+    vim.o.background = 'dark'
+  else
+    vim.o.background = 'light'
+  end
+end
+
+-- Call the function when Neovim starts
+set_background_based_on_theme()
+
+-- Optionally, you can create a command to manually trigger the theme check
+vim.api.nvim_create_user_command('CheckSystemTheme', set_background_based_on_theme, {})
+
+vim.cmd([[
+    command! ReloadConfig source ~/.config/nvim/init.lua | set hlsearch
+]])
+
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -75,10 +99,8 @@ vim.opt.wildignore:append { '*/node_modules/*' }
 vim.opt.formatoptions:append { 'r' }
 
 
--- vim.cmd[[
--- nnoremap <C-w>e :Ex<CR>
--- ]]
-vim.api.nvim_set_keymap('n', '<C-w>e', ':NvimTreeFindFileToggle<CR>', { noremap = true, silent = true })
+vim.cmd[[ nnoremap <C-w>e :Ex<CR> ]]
+-- vim.api.nvim_set_keymap('n', '<C-w>e', ':NvimTreeFindFileToggle<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-w>k', ':w<CR>', { noremap = true, silent = true })
 
 
