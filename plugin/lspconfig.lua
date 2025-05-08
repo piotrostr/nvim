@@ -329,3 +329,13 @@ nvim_lsp.vuels.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
+
+nvim_lsp.nimls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+nvim_lsp.nimlangserver.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
